@@ -1,13 +1,6 @@
 <script lang="ts">
-  import FormInput from '../../components/FormInput.svelte';
-  import eyeIcon from '../../assets/eye.svg';
-  import LockIcon from '../../components/LockIcon.svelte';
   import LoginForm from '../../components/LoginForm.svelte';
-
-
-
 </script>
-
 
 <div class="container">
   <div class="logo-wrapper">

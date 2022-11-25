@@ -19,24 +19,24 @@
     }
   }
 
-  const email = field('email', '', [required(), emailValidator()], {validateOnChange:false});
-  const password = field('password', '', [required()], {validateOnChange:false});
+  const email = field('email', '', [ required(), emailValidator() ], { validateOnChange:false });
+  const password = field('password', '', [ required() ], { validateOnChange:false });
   const loginForm = form(email, password);
 
   const togglePasswordShown = ()=> {                                          
     isPasswordShown = !isPasswordShown;
   }
 
-  const login = (email: string, password: string)=> {
-    return new Promise((resolve)=>{                           
-      setTimeout(()=>{
-          if(email && password){
-            resolve(true);
-          }else{
-            resolve(false);
-          }
-        },300);
-      });
+  const login = (email: string, password: string): Promise<boolean> => {
+    const url = 'http://127.0.0.1:3000/api/v1/users/signin';
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    };
+    return fetch(url, fetchOptions).then((response)=> response.json());
   }
 
   const onSubmitForm = async (event: SubmitEvent)=>{
@@ -44,26 +44,28 @@
     if(isLoginSubmitted ){
       return;
     }
+    isLoginSubmitted = true;
+
     await loginForm.validate();
-    console.log($loginForm.errors);
-    isLoginSubmitted = true;    
-    
     if($loginForm.errors.length > 0){
       isLoginSubmitted = false;
       return;
     }
     
     const summary = loginForm.summary();
-    const loginSuccess = await login(summary.email, summary.password);
-
-    isLoginSubmitted = false;
-    if(!loginSuccess){
-      return;
+    try{
+      const loginSuccess = await login(summary.email, summary.password);
+      if(!loginSuccess){
+        return;
+      }
+      alert('로그인이 되었습니다.');
+    } catch(error) {
+      alert('로그인 중 문제가 발생했습니다.');
+    } finally {
+      loginForm.reset();
+      isLoginSubmitted = false;
     }
-
-    loginForm.reset();
   }
-
 </script>
 
 <form class="form" on:submit="{onSubmitForm}" >
@@ -95,7 +97,7 @@
   </div>
   <button type="submit" class="submit-button">
     {#if isLoginSubmitted}
-      로그인 중...
+      Loading...
       {:else}
         로그인
     {/if}
