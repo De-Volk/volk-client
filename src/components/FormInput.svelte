@@ -1,11 +1,12 @@
 <script lang="ts">
   import { afterUpdate } from "svelte";
-
-
+  
   export let value: string;
   export let type: 'text'|'password'|'email' = 'text';
   export let label: string = '';
   export let placeholder: string = '';
+  export let hasError: boolean;
+  export let errors: string[];
 
   let conditionalAttributes: {label?:string; placeholder?:string;} = {};
   if(label) conditionalAttributes.label = label;
@@ -19,19 +20,22 @@
 
 <div class='container'>
   {#if label}
-    <label for="input">{label}</label>
+    <label for="input" style={hasError ? 'color: rgb(228, 109, 109);' : ''}>{label}</label>
   {/if}
-  <div class="input-wrapper">
+  <div class="input-wrapper" style={hasError ? 'border-color: rgb(228, 109, 109);' : ''}>
     <input name='input' {...conditionalAttributes} bind:value bind:this={inputElement} />
     <slot name="indicator"></slot>
   </div>
+  {#if hasError && errors.length>0}
+      <p class='error-message'>{errors[0]}</p>    
+  {/if}
 </div>
 
 <style>
 .container{
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   align-items: flex-start;
 }
 .container label {
@@ -43,6 +47,7 @@
 .input-wrapper {
   display:flex;
   width:100%;
+  height:100%;
   border: 1px solid #909090;
   border-radius: 8px;
   overflow: hidden;
@@ -61,4 +66,8 @@
   color: #9F9F9F;
 }
 
+.container .error-message{
+  color:rgb(228, 109, 109);
+  font-size: 0.8rem;
+}
 </style>
