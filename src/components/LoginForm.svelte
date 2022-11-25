@@ -1,21 +1,36 @@
 <script lang="ts">
+  import { form, field } from 'svelte-forms';
+  import { required, email as emailValidator } from 'svelte-forms/validators';
+
   import FormInput from '../components/FormInput.svelte';
   import eyeIcon from '../assets/eye.svg';
   import LockIcon from '../components/LockIcon.svelte';
 
-  let emailValue='';
-  let passwordValue='';
   let isPasswordShown = false;
   let isLoginSubmitted = false;
 
-  const togglePasswordShown = ()=> {
+  const errors = {
+    'email': {
+      'required': '이메일을 입력해주세요',
+      'not_an_email': '이메일 형식을 확인해주세요'
+    },
+    'password':{
+      'required': '비밀번호를 입력해주세요'
+    }
+  }
+
+  const email = field('email', '', [required(), emailValidator()], {validateOnChange:false});
+  const password = field('password', '', [required()], {validateOnChange:false});
+  const loginForm = form(email, password);
+
+  const togglePasswordShown = ()=> {                                          
     isPasswordShown = !isPasswordShown;
   }
 
-  const login = (isSuccess: boolean)=> {
-    return new Promise((resolve)=>{
+  const login = (email: string, password: string)=> {
+    return new Promise((resolve)=>{                           
       setTimeout(()=>{
-          if(isSuccess){
+          if(email && password){
             resolve(true);
           }else{
             resolve(false);
@@ -25,29 +40,50 @@
   }
 
   const onSubmitForm = async (event: SubmitEvent)=>{
-    event.preventDefault();                  
-    if(isLoginSubmitted || !emailValue || !passwordValue){
+    event.preventDefault();             
+    if(isLoginSubmitted ){
       return;
     }
-
-    isLoginSubmitted = true;                                                                                                                                  
-    const loginSuccess = await login(true);
+    await loginForm.validate();
+    console.log($loginForm.errors);
+    isLoginSubmitted = true;    
+    
+    if($loginForm.errors.length > 0){
+      isLoginSubmitted = false;
+      return;
+    }
+    
+    const summary = loginForm.summary();
+    const loginSuccess = await login(summary.email, summary.password);
 
     isLoginSubmitted = false;
     if(!loginSuccess){
       return;
     }
 
-    emailValue='';
-    passwordValue='';
+    loginForm.reset();
   }
 
 </script>
 
 <form class="form" on:submit="{onSubmitForm}" >
   <div class="input-wrapper">
-    <FormInput type="email" label="이메일" placeholder="이메일을 입력하세요" bind:value={emailValue} />
-    <FormInput  label="비밀번호" placeholder="비밀번호를 입력하세요" bind:value={passwordValue} type={isPasswordShown ? 'text':'password'}>
+    <FormInput 
+      type="email" 
+      label="이메일" 
+      placeholder="이메일을 입력하세요" 
+      bind:value={$email.value}
+      hasError={$email.errors.length>0}
+      errors={$email.errors.map((error)=>errors.email[error])}
+    />
+    <FormInput  
+      type={isPasswordShown ? 'text':'password'}
+      placeholder="비밀번호를 입력하세요" 
+      label="비밀번호" 
+      bind:value={$password.value}
+      hasError={$password.errors.length>0}
+      errors={$password.errors.map((error)=>errors.password[error])}
+    >
         <button class='show-password-button' slot="indicator" type="button" on:click="{togglePasswordShown}">
           {#if !isPasswordShown}
             <img src={eyeIcon} alt='보기'/>
