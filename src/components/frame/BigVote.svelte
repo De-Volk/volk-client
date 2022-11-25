@@ -1,7 +1,7 @@
 <script>
     import {timeForToday} from '$utils/date'
-    import Button from "./Button.svelte";
-  import UserIcon from "./UserIcon.svelte";
+    import Button from "../Button.svelte";
+  import UserIcon from "../UserIcon.svelte";
     export let handleNext;
     export let data = {};
     const {title,positiveValue,negativeValue,publisher,candidates,endDate} = data;
