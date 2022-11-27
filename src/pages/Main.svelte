@@ -1,8 +1,8 @@
 <script lang="ts">
   import { Swipeable } from 'thumb-ui';
   import { tick } from 'svelte';
-  import VoteFrame from '$components/VoteFrame.svelte';
-  import { useGetVotes } from '../utils/api/vote';
+  import BigVoteFrame from '$components/frame/BigVote.svelte';
+  import { useGetVotes } from '$utils/api/vote';
 
   const votes = useGetVotes();
 
@@ -35,7 +35,10 @@
               style="right: {100 * ($introProgress - index)}%; opacity: {1 -
                 Math.abs($introProgress - index)}"
             >
-              <VoteFrame data={item} />
+              <BigVoteFrame
+                data={item}
+                {handleNext}
+              />
             </div>
           </section>
         {/each}
