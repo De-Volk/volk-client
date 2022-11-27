@@ -3,7 +3,7 @@ import User from './User.svelte';
 import Hot from './Hot.svelte';
 import History from './History.svelte';
 import Add from './Add.svelte';
-import Login from './LoginPage/index.svelte';
+import Login from './Login.svelte';
 import Register from './Register.svelte';
 
 export default {
