@@ -1,5 +1,5 @@
 <script lang="ts">
-  import LoginForm from '../../components/LoginForm.svelte';
+  import LoginForm from '$components/LoginForm.svelte';
 </script>
 
 <div class="container">
@@ -9,59 +9,58 @@
   </div>
   <LoginForm />
   <div class="menu-wrapper">
-    <a href="/">회원가입</a>
+    <a href="/#/register">회원가입</a>
     <a href="/">비밀번호 찾기</a>
   </div>
 </div>
 
 <style>
-  .container{
+  .container {
     width: 100%;
-    height:100%;
+    height: 100%;
     max-width: 320px;
     margin: 0 auto;
-    display:flex;
+    display: flex;
     flex-direction: column;
     gap: 1rem;
   }
-  .container .menu-wrapper{
+  .container .menu-wrapper {
     margin-top: 1rem;
   }
 
-  .logo-wrapper { 
-    flex:2;
-    display:flex;
+  .logo-wrapper {
+    flex: 2;
+    display: flex;
     flex-direction: column;
 
-    gap:1rem;
+    gap: 1rem;
     justify-content: center;
     align-items: center;
 
     width: 100%;
   }
-  .logo-wrapper .logo-title{
+  .logo-wrapper .logo-title {
     text-align: center;
     font-size: 3rem;
   }
-  .logo-wrapper .logo-subtitle{
+  .logo-wrapper .logo-subtitle {
     font-weight: 600;
     font-size: 1rem;
   }
-  
 
-  .menu-wrapper{
+  .menu-wrapper {
     flex: 1;
-    width:100%;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
   }
-  .menu-wrapper a{
+  .menu-wrapper a {
     background-color: white;
-    font-weight:500;
-    font-size:1rem;
+    font-weight: 500;
+    font-size: 1rem;
     border: none;
 
-    width:120px;
-    height:2.4rem;
+    width: 120px;
+    height: 2.4rem;
   }
 </style>
