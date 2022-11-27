@@ -1,4 +1,6 @@
 import './app.css';
+import './reset.css';
+import './main.css';
 import App from './App.svelte';
 import { worker } from './mocks';
 
