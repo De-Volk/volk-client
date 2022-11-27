@@ -25,18 +25,19 @@
 <style>
   a {
     display: flex;
-    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
   }
   nav {
     position: fixed;
     bottom: 0px;
     left: 0px;
-    padding: 0.6rem 1rem;
     box-sizing: border-box;
     display: flex;
     width: 100%;
+    height: 60px;
     background: #222222;
-    justify-content: space-between;
   }
   .focus {
     width: 1.8rem;
