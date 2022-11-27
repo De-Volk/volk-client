@@ -16,6 +16,7 @@
     "svelte": "^3.52.0",
     "svelte-check": "^2.9.2",
     "svelte-preprocess": "^4.10.7",
+    "thumb-ui": "0.0.17",
     "tslib": "^2.4.0",
     "typescript": "^4.6.4",
     "vite": "^3.2.3"
