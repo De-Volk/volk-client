@@ -1,5 +1,16 @@
-<div class="icon"></div>
+<script lang="ts">
+    export let url='';
+    let isError = false;
+    const handleError = () =>{
+        isError = true;
+    }
+</script>
 
+{#if !isError}
+    <img class="icon" src={url} on:error="{handleError}" alt="아이콘" />
+{:else}
+    <div class="icon"/>
+{/if}
 
 <style>
     .icon{

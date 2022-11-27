@@ -1,26 +1,28 @@
 <script>
+    import {timeForToday} from '$utils/date'
     import Button from "./Button.svelte";
   import UserIcon from "./UserIcon.svelte";
+    export let handleNext;
     export let data = {};
-    const {title,positiveValue,negativeValue} = data;
+    const {title,positiveValue,negativeValue,publisher,candidates,endDate} = data;
 </script>
 <div class="container">
     <div>
         <div class="titleWrapper">
             <div class="userWrapper">
-                <UserIcon/>
-                <p>익명의 게시자</p>
+                <UserIcon url={publisher.url}/>
+                <p>{publisher.name}</p>
             </div>
             <div class="userWrapper">
                 <div class="users">
-                    {#each Array(3).fill('') as item , index}
-                        <UserIcon/>
+                    {#each candidates.urls as url}
+                        <UserIcon {url}/>
                     {/each}
                 </div>
-                <p>99+명 참여</p>
+                <p>{candidates.count}명 참여</p>
             </div>
         </div>
-        <div class="remainTime">남은 시간 06:12:39</div>
+        <p class="remainTime">남은 시간 {timeForToday(endDate)}</p>
     </div>
     <div class="contentWrapper">
         <p>{title}</p>
@@ -30,12 +32,15 @@
         <p>{negativeValue}</p>
     </div>
     <div class="buttonWrapper">
-        <Button type="primary" content="찬성" on:click={()=>{}}/>
-        <Button type="secondary" content="반대" on:click={()=>{}}/>
+        <Button type="primary" content="찬성" on:click={handleNext}/>
+        <Button type="secondary" content="반대" on:click={handleNext}/>
     </div>
 </div>
 
 <style>
+    p{
+        font-weight: 600;
+    }
     .titleWrapper{
         display: flex;
         justify-content: space-between;
@@ -59,7 +64,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding:6rem 1.2rem;
+        padding:3rem 1.2rem 6rem 1.2rem;
         box-sizing: border-box;
         width:100vw;
         height: 100vh;
@@ -69,6 +74,7 @@
         justify-content: space-evenly;
         gap: 1rem;
         height: 3rem;
+        z-index: 999;
     }
  
     .users{

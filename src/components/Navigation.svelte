@@ -6,7 +6,7 @@
 <nav>
     {#each navItems as item}
         {@const src='/assets/'+item.src + '.svg'}
-        {@const href='/'+item.src}
+        {@const href='/#/'+item.src}
         <a {href}>
             <img class:focus="{item.type==='focus'}" {src} alt='button'/>
         </a>

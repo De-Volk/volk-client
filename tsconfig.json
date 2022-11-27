@@ -13,7 +13,13 @@
      */
     "allowJs": true,
     "checkJs": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "paths": {
+      "$components/*": ["./src/components/*"],
+      "$pages/*": ["./src/pages/*"],
+      "$stores/*": ["./src/stores/*"],
+      "$utils/*": ["./src/utils/*"]
+    }
   },
   "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
   "references": [{ "path": "./tsconfig.node.json" }]
