@@ -10,5 +10,5 @@ import type {
 export type Props = (
   req: RestRequest<never, PathParams<string>>,
   res: ResponseComposition<DefaultBodyType>,
-  ctx: RestContext
+  ctx: RestContext,
 ) => any;

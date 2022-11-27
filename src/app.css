@@ -78,3 +78,6 @@ button:focus-visible {
     background-color: #ffffff;
   }
 }
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}

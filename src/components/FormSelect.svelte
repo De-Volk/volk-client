@@ -2,7 +2,6 @@
   import { afterUpdate } from 'svelte';
 
   export let value: string;
-  export let type: 'text' | 'password' | 'email' | 'date' = 'text';
   export let label: string = '';
   export let placeholder: string = '';
   export let hasError: boolean;
@@ -11,12 +10,6 @@
   let conditionalAttributes: { label?: string; placeholder?: string } = {};
   if (label) conditionalAttributes.label = label;
   if (placeholder) conditionalAttributes.placeholder = placeholder;
-
-  let inputElement;
-
-  afterUpdate(() => {
-    inputElement.type = type;
-  });
 </script>
 
 <div class="container">
@@ -30,12 +23,11 @@
     class="input-wrapper"
     style={hasError ? 'border-color: rgb(228, 109, 109);' : ''}
   >
-    <input
-      name="input"
-      {...conditionalAttributes}
-      bind:value
-      bind:this={inputElement}
-    />
+    <select bind:value>
+      <option default>선택</option>
+      <option value="남자">남자</option>
+      <option value="여자">여자</option>
+    </select>
     <slot name="indicator" />
   </div>
   {#if hasError && errors.length > 0}
@@ -63,21 +55,17 @@
     border: 1px solid #909090;
     border-radius: 8px;
   }
-  .input-wrapper input {
-    padding: 14px;
-    width: 100%;
-    background: none;
-    border-radius: 8px;
-    border: none;
-    color-scheme: dark;
-    font-size: 1rem;
-  }
-  .input-wrapper input::placeholder {
-    color: #9f9f9f;
-  }
 
   .container .error-message {
     color: rgb(228, 109, 109);
     font-size: 0.8rem;
+  }
+  select {
+    padding: 14px;
+    background: #ffffff;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 1rem;
+    border: none;
   }
 </style>
