@@ -1,5 +1,5 @@
 <script lang="ts">
-  import LoginForm from '$components/LoginForm.svelte';
+  import RegisterForm from '$components/RegisterForm.svelte';
 </script>
 
 <div class="container">
@@ -7,9 +7,9 @@
     <h1 class="logo-title">Volk</h1>
     <p class="logo-subtitle">당신의 생각을 이야기 해보세요</p>
   </div>
-  <LoginForm />
+  <RegisterForm />
   <div class="menu-wrapper">
-    <a href="/#/register">회원가입</a>
+    <a href="/#/login">로그인</a>
     <a href="/">비밀번호 찾기</a>
   </div>
 </div>

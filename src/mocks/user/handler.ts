@@ -8,7 +8,12 @@ export const MSW_USER_INFO = {
 };
 
 export const mockLogin: Props = (req, res, ctx) => res(ctx.json(true));
-export const mockRegister: Props = (req, res, ctx) => res(ctx.json(true));
+export const mockRegister: Props = (req, res, ctx) =>
+  res(
+    ctx.json({
+      status: 200,
+    }),
+  );
 export const mockLogOut: Props = (req, res, ctx) => res(ctx.json(true));
 export const mockGetToken: Props = (req, res, ctx) => res(ctx.json(true));
 export const mockGetUserInfo: Props = (req, res, ctx) => res(ctx.json(MSW_USER_INFO));
