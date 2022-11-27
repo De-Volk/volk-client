@@ -4,7 +4,7 @@
 
   import FormInput from '../components/FormInput.svelte';
   import eyeIcon from '../assets/eye.svg';
-  import LockIcon from '../components/LockIcon.svelte';
+  import LockIcon from './icons/LockIcon.svelte';
 
   let isPasswordShown = false;
   let isLoginSubmitted = false;
