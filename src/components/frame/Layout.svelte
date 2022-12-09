@@ -2,16 +2,16 @@
   export let header: string;
 </script>
 
+<header class="header">
+  <div class="left-content">
+    <slot name="headerLeftContent" />
+  </div>
+  <h2>{header}</h2>
+  <div class="right-content">
+    <slot name="headerRightContent" />
+  </div>
+</header>
 <main class="container">
-  <header class="header">
-    <div class="left-content">
-      <slot name="headerLeftContent" />
-    </div>
-    <h2>{header}</h2>
-    <div class="right-content">
-      <slot name="headerRightContent" />
-    </div>
-  </header>
   <slot />
 </main>
 
@@ -20,7 +20,8 @@
     position: relative;
     width: 100%;
     height: calc(100% - 50px - 60px);
-    padding-top: 50px;
+    margin-top: 50px;
+    overflow-y: auto;
   }
   .header {
     position: fixed;
@@ -32,6 +33,7 @@
     height: 50px;
     background-color: #ffffff;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
   }
   .header h2 {
     font-size: 20px;
