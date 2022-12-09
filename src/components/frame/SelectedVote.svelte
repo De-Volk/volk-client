@@ -96,17 +96,17 @@
   .title-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
   .title-wrapper {
     display: flex;
     align-items: center;
+    position:relative;
   }
   .title-rec {
     margin-right: 0.2rem;
     width: 3px;
-    height: 15px;
-    left: 38px;
-    top: 254px;
+    height: 15px;   
 
     background: #2e4558;
     border-radius: 6px;

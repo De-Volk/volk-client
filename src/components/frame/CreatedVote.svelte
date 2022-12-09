@@ -56,6 +56,7 @@
     border-radius: 12px;
     box-shadow: 0px 0px 3px #00000029;
     padding: 1rem;
+    position: relative;
   }
   .title-container {
     display: flex;
