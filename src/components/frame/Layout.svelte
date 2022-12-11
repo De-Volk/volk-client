@@ -1,5 +1,6 @@
 <script lang="ts">
   export let header: string;
+  export let hideNavbar: boolean = false;
 </script>
 
 <header class="header">
@@ -11,7 +12,7 @@
     <slot name="headerRightContent" />
   </div>
 </header>
-<main class="container">
+<main class="container" style="--navbar: {hideNavbar ? 0 : 60}px">
   <slot />
 </main>
 
@@ -19,7 +20,7 @@
   .container {
     position: relative;
     width: 100%;
-    height: calc(100% - 50px - 60px);
+    height: calc(100% - 50px - var(--navbar));
     margin-top: 50px;
     overflow-y: auto;
   }

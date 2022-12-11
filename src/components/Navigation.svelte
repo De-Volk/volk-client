@@ -1,10 +1,10 @@
 <script lang="ts">
   const navItems = [
-    { src: 'Home', type: 'none' },
-    { src: 'Hot', type: 'none' },
-    { src: 'Add', type: 'focus' },
-    { src: 'History', type: 'none' },
-    { src: 'User', type: 'none' },
+    { src: 'home', type: 'none' },
+    { src: 'hot', type: 'none' },
+    { src: 'add', type: 'focus' },
+    { src: 'history', type: 'none' },
+    { src: 'user', type: 'none' },
   ];
 </script>
 

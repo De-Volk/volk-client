@@ -1,10 +1,11 @@
 <script lang="ts">
   import CreatedVote from '$components/frame/CreatedVote.svelte';
   import SelectedVote from '$components/frame/SelectedVote.svelte';
-  import Layout from '../components/frame/Layout.svelte';
-  import SettingIcon from '../components/icons/SettingIcon.svelte';
+  import Layout from '$components/frame/Layout.svelte';
+  import SettingIcon from '$components/icons/SettingIcon.svelte';
+  import UserInfo from '$components/UserInfo.svelte';
 
-  export let isSelected = 1;
+  export let isSelected = 0;
   const buttons = ['내가한 투표', '생성한 투표'];
 </script>
 
@@ -13,23 +14,13 @@
     slot="headerRightContent"
     class="header-right-content"
   >
-    <button
-      type="button"
-      class="profile-setting-button"
-    >
+    <a href="/#/user/edit" class="profile-setting-button">
       <SettingIcon stroke="#222222" />
-    </button>
+    </a>
   </div>
   <div class="content-container">
     <section class="mypage-section user-info-section">
-      <div>Profile</div>
-      <div>
-        <p>username</p>
-        <div>
-          <span>남</span>
-          <span>20대</span>
-        </div>
-      </div>
+      <UserInfo />
     </section>
     <section class="button-container">
       <div class="button-wrapper">
@@ -42,8 +33,13 @@
         {/each}
       </div>
     </section>
-    <section class="mypage-section">
+    <section class="mypage-section vote-section">
       {#if isSelected === 0}
+        <SelectedVote />
+        <SelectedVote />
+        <SelectedVote />
+        <SelectedVote />
+        <SelectedVote />
         <SelectedVote />
       {:else}
         <CreatedVote />
@@ -57,14 +53,24 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    position: relative;
   }
   .button-container {
+    position:sticky;
+    top: 0px;
+    z-index: 1000;
+    width: calc(100% + 1rem);
+  }
+  .button-container .button-wrapper{
+    width: 100%;
     display: flex;
     justify-content: center;
+
+    background: white;
+    padding: 0.5rem 0;
   }
   .button-wrapper {
     background: #2e4558;
-    border-radius: 6px;
   }
   .toggle-button {
     background: #2e4558;
@@ -81,13 +87,20 @@
     color: black;
   }
   .mypage-section {
-    padding: 0.5rem;
     background-color: white;
+    width: calc(100% - 2rem);
+    padding: 1rem;
   }
   .mypage-section.user-info-section {
     display: flex;
     align-items: center;
     gap: 1rem;
+    height: 80px;
+  }
+  .mypage-section.vote-section{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
   }
   .header-right-content {
     height: 100%;
