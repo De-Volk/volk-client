@@ -5,12 +5,14 @@
   export let type: 'text' | 'password' | 'email' | 'date' = 'text';
   export let label: string = '';
   export let placeholder: string = '';
-  export let hasError: boolean;
-  export let errors: string[];
+  export let hasError: boolean = false;
+  export let errors: string[] = [];
+  export let disabled: boolean = false;
 
-  let conditionalAttributes: { label?: string; placeholder?: string } = {};
+  let conditionalAttributes: { label?: string; placeholder?: string; disabled?:boolean } = {};
   if (label) conditionalAttributes.label = label;
   if (placeholder) conditionalAttributes.placeholder = placeholder;
+  if(disabled) conditionalAttributes.disabled = true;
 
   let inputElement;
 

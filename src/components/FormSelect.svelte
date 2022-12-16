@@ -10,7 +10,13 @@
   let conditionalAttributes: { label?: string; placeholder?: string } = {};
   if (label) conditionalAttributes.label = label;
   if (placeholder) conditionalAttributes.placeholder = placeholder;
+
+  const handleClose = () => {
+    alert('뒤로가기 ㄴㄴ');
+  };
 </script>
+
+<svelte:window on:popState={handleClose()} />
 
 <div class="container">
   {#if label}

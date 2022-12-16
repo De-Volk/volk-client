@@ -1,10 +1,10 @@
 <script lang="ts">
   const navItems = [
-    { src: 'Home', type: 'none' },
-    { src: 'Hot', type: 'none' },
-    { src: 'Add', type: 'focus' },
-    { src: 'History', type: 'none' },
-    { src: 'User', type: 'none' },
+    { src: 'home', type: 'none' },
+    { src: 'hot', type: 'none' },
+    { src: 'add', type: 'focus' },
+    { src: 'history', type: 'none' },
+    { src: 'user', type: 'none' },
   ];
 </script>
 
@@ -25,18 +25,19 @@
 <style>
   a {
     display: flex;
-    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
   }
   nav {
     position: fixed;
     bottom: 0px;
     left: 0px;
-    padding: 0.6rem 1rem;
     box-sizing: border-box;
     display: flex;
     width: 100%;
+    height: 60px;
     background: #222222;
-    justify-content: space-between;
   }
   .focus {
     width: 1.8rem;

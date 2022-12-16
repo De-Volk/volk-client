@@ -1,12 +1,13 @@
-<script>
+<script lang='ts'>
   import { QueryClient, QueryClientProvider } from '@sveltestack/svelte-query';
-  import Router, { location, querystring } from 'svelte-spa-router';
+  import Router, { location } from 'svelte-spa-router';
   import routes from './pages';
   import Navigation from '$components/Navigation.svelte';
   const queryClient = new QueryClient();
   const nonAuthPaths = ['/login', '/register'];
+  const hideNavigationPaths = [...nonAuthPaths, '/user/edit'];
 
-  const contain = (path) => nonAuthPaths.includes(path.toLowerCase());
+  const contain = (path: string) => hideNavigationPaths.includes(path.toLowerCase());
 </script>
 
 <QueryClientProvider client={queryClient}>
