@@ -5,7 +5,7 @@
   import Navigation from '$components/Navigation.svelte';
   const queryClient = new QueryClient();
   const nonAuthPaths = ['/login', '/register'];
-  const hideNavigationPaths = [...nonAuthPaths, '/user/edit'];
+  const hideNavigationPaths = [...nonAuthPaths, '/add', '/user/edit'];
 
   const contain = (path: string) => hideNavigationPaths.includes(path.toLowerCase());
 </script>
